@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { withAuth } from "@okta/okta-react";
+import { connect } from "react-redux";
+import { fetchUser } from "../actions/authActions";
 
 class Saved extends Component {
   state = { user: null };
 
   getCurrentUser = async () => {
-    this.props.auth.getUser().then(user => this.setState({ user }));
+    // this.props.auth.getUser().then(user => this.setState({ user }));
+    this.props.auth.getUser().then(user => this.props.fetchUser(user))
   };
 
   componentDidMount() {
@@ -13,17 +16,26 @@ class Saved extends Component {
   }
 
   render() {
-    if (!this.state.user) return null;
+    if (!this.props.user) return null;
+    const { given_name } = this.props.user
     return (
       <section className="user-profile">
-        <h1>User Profile</h1>
-        <div>
-          <label>Name:</label>
-          <span>{this.state.user.given_name}</span>
-        </div>
+        <h1>{given_name}'s Profile</h1>
+        <hr />
       </section>
     );
   }
 }
 
-export default withAuth(Saved)
+const mapStateToProps = state => {
+  return {
+    user: state.authentication.user
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    fetchUser
+  }
+)(withAuth(Saved));

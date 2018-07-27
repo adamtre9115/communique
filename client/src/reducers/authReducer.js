@@ -1,8 +1,9 @@
-import { REGISTER_SUCCESS, REGISTER_FAILURE, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/types';
+import { FETCH_USER, REGISTER_SUCCESS, REGISTER_FAILURE, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/types';
 
 const initialState = {
     sessionToken: null,
-    error: null
+    error: null,
+    user: null
   };
 
 export default function(state =  initialState, action) {
@@ -29,6 +30,12 @@ export default function(state =  initialState, action) {
             return {
                 ...state,
                 error: action.payload
+            }
+        }
+        case FETCH_USER: {
+            return {
+                ...state,
+                user: action.payload
             }
         }
         default :
