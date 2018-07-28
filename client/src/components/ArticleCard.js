@@ -16,7 +16,13 @@ import { Card, CardImg, CardText, CardBody,
                         <CardLink href={props.articleLink} target='_blank'>Read it</CardLink>
                     </Col>
                     <Col sm='6' className='text-right'>
-                        <FontAwesomeIcon icon={faBookmark} />
+                        <FontAwesomeIcon 
+                            icon={faBookmark} 
+                            data-title={props.articleTitle} 
+                            data-image={props.articleImage}
+                            data-link={props.articleLink}
+                            onClick={props.articleSave}
+                        />
                     </Col>
                 </Row>
             </CardBody>

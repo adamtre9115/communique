@@ -1,23 +1,27 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withAuth } from "@okta/okta-react";
 import { connect } from "react-redux";
 import ArticleCard from "../components/ArticleCard";
 import ButtonMenu from "../components/ButtonMenu";
 import Loader from "../components/Loading";
 import { Container, Col, Row } from "reactstrap";
+import { fetchUser } from "../actions/authActions";
 import {
   fetchTrending,
   fetchBusiness,
   fetchEnt,
   fetchHealth,
   fetchSports,
-  fetchTech
+  fetchTech,
+  saveArticle
 } from "../actions/articleActions";
 
 import Newspaper from "../assets/images/newspaper.png";
 
 class ArticleView extends Component {
   componentWillMount() {
+    this.props.auth.getUser().then(user => this.props.fetchUser(user));
     this.props.fetchTrending();
   }
 
@@ -49,6 +53,20 @@ class ArticleView extends Component {
     }
   };
 
+  saveSelected = (e) => {
+    // capture values of selected article
+    let artToSave = {
+      userName: this.props.user.email,
+      articleTitle: e.target.dataset.title,
+      articleImage: e.target.dataset.image,
+      articleLink: e.target.dataset.link
+    }
+    // send it to the db for saving
+    if (artToSave !== null || artToSave !== undefined){
+      this.props.saveArticle(artToSave)
+    }
+  }
+
   renderArticles = () => {
     return (
       <Row>
@@ -59,6 +77,7 @@ class ArticleView extends Component {
               articleTitle={news.title}
               articleDescription={news.description}
               articleLink={news.url}
+              articleSave={this.saveSelected}
             />
           </Col>
         ))}
@@ -85,6 +104,7 @@ class ArticleView extends Component {
   }
 }
 
+// verify props recived to the component
 ArticleView.propTypes = {
   articles: PropTypes.array.isRequired,
   fetchTrending: PropTypes.func.isRequired,
@@ -92,11 +112,14 @@ ArticleView.propTypes = {
   fetchEnt: PropTypes.func.isRequired,
   fetchHealth: PropTypes.func.isRequired,
   fetchSports: PropTypes.func.isRequired,
-  fetchTech: PropTypes.func.isRequired
+  fetchTech: PropTypes.func.isRequired,
+  saveArticle: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  articles: state.articles.articles
+  articles: state.articles.articles,
+  user: state.authentication.user
 });
 
 export default connect(
@@ -107,6 +130,8 @@ export default connect(
     fetchEnt,
     fetchHealth,
     fetchSports,
-    fetchTech
+    fetchTech,
+    fetchUser,
+    saveArticle
   }
-)(ArticleView);
+)(withAuth(ArticleView));

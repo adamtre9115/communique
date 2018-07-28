@@ -4,11 +4,13 @@ import {
   FETCH_ENT,
   FETCH_HEALTH,
   FETCH_SPORTS,
-  FETCH_TECH
+  FETCH_TECH,
+  SAVE_ARTICLE
 } from "../actions/types";
 
 const initialState = {
-  articles: []
+  articles: [],
+  savedArticles: []
 };
 
 export default function(state = initialState, action) {
@@ -43,6 +45,11 @@ export default function(state = initialState, action) {
         ...state,
         articles: action.payload
       };
+      case SAVE_ARTICLE:
+      return {
+        ...state,
+        savedArticles: action.payload
+      }
     default:
       return state;
   }

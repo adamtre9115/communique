@@ -27,7 +27,7 @@ export default withAuth(class Login extends Component {
       return this.state.authenticated ?
         
         // if there is a session token redirect to home
-        <Redirect to={{ pathname: '/' }} /> :
+        <Redirect to={{ pathname: '/articles' }} /> :
         <LoginForm baseUrl={this.props.baseUrl} />;
         
     }

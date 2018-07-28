@@ -1,10 +1,12 @@
+import Axios from 'axios';
 import {
   FETCH_TRENDING,
   FETCH_BUSINESS,
   FETCH_ENT,
   FETCH_HEALTH,
   FETCH_SPORTS,
-  FETCH_TECH
+  FETCH_TECH,
+  SAVE_ARTICLE
 } from "./types";
 
 export const fetchTrending = () => dispatch => {
@@ -90,3 +92,27 @@ export const fetchTech = () => dispatch => {
     )
     .catch(err => console.log(err));
 };
+
+export const fetchSaved = (user) => dispatch => {
+  let email = {
+    userName: user
+  }
+  return Axios.post('/api/users/retrieve', email)
+    .then(res => {
+      dispatch({
+        type: SAVE_ARTICLE,
+        payload: res.data.articles
+      })
+    })
+}
+// save user selected article to database and state
+export const saveArticle = (data) => dispatch => {
+  Axios.post('/api/users/save', data)
+    // .then(() => {
+    //   dispatch({
+    //     type: SAVE_ARTICLE,
+    //     payload: data
+    //   })
+    // })
+    // .catch(err => console.log(err))
+}

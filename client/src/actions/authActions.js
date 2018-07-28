@@ -50,7 +50,6 @@ export const loginUser = (oktaAuth, username, password) => dispatch => {
 
 // save logged in user to state
 export const fetchUser = (user) => dispatch => {
-  console.log(user)
   dispatch({
     type: FETCH_USER,
     payload: user

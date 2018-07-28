@@ -46,12 +46,12 @@ export default withAuth(class Navigation extends Component {
     const authNav = this.state.authenticated ? (
       <div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand href="/">Communique</NavbarBrand>
+          <NavbarBrand tag={Link} to="/">Communique</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse className="text-center" isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/articles">Articles</NavLink>
+                <NavLink tag={Link} to="/articles">Articles</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href='/' onClick={this.props.auth.logout}>Logout</NavLink>
