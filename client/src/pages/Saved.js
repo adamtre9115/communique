@@ -2,28 +2,40 @@ import React, { Component } from "react";
 import { withAuth } from "@okta/okta-react";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions/authActions";
-import { fetchSaved } from "../actions/articleActions";
+import { fetchSaved, removeSaved } from "../actions/articleActions";
 import ArticleCard from "../components/ArticleCard";
 import { Col, Container, Row } from "reactstrap";
 
 class Saved extends Component {
+ 
   getCurrentUser = async () => {
     // get user info for logged in user
-    let user = await this.props.auth.getUser();
-
-    // get any saved articles for this user
-    return this.getArticles(user.email);
+    this.props.auth.getUser().then(user => this.props.fetchUser(user));
   };
 
   componentDidMount() {
     this.getCurrentUser();
   }
 
-  getArticles = async email => {
-    this.props.fetchSaved(email);
+  componentWillReceiveProps(nextProps){
+    // getting the user happens asyncronously so,
+    // once we recieve those props get the saved articles
+    // this will trigger a render for the articles
+    if(this.props.user !== nextProps.user){
+      this.props.fetchSaved(nextProps.user.email)
+    }
+  }
+
+  getArticles = email => {
+    this.props.fetchSaved(email)
     // return console.log(articles)
   };
 
+  removeArticle = e => {
+    let id = e.target.dataset.special
+    // console.log(id)
+    this.props.removeSaved(id)
+  }
   renderSaved = () => {
     return (
       <Row>
@@ -32,8 +44,9 @@ class Saved extends Component {
             <ArticleCard
               articleImage={news.articleImage}
               articleTitle={news.articleTitle}
-              // articleDescription={news.description}
               articleLink={news.articleLink}
+              articleId={news._id}
+              articleAction={this.removeArticle}
             />
           </Col>
         ))}
@@ -48,7 +61,7 @@ class Saved extends Component {
     if (this.props.articles.length > 0) {
       return (
         <Container>
-          <h1>{given_name}'s Profile</h1>
+          <h1>{given_name}'s Shelf</h1>
           {this.renderSaved()}
         </Container>
       );
@@ -56,8 +69,8 @@ class Saved extends Component {
 
     return (
       <Container>
-        <h1>{given_name}'s Profile</h1>
-        <h4>No saved articles</h4>
+        <h1>{given_name}'s Shelf</h1>
+        <h4>Your shelf is currently empty</h4>
       </Container>
     );
   }
@@ -74,6 +87,7 @@ export default connect(
   mapStateToProps,
   {
     fetchUser,
-    fetchSaved
+    fetchSaved,
+    removeSaved
   }
 )(withAuth(Saved));

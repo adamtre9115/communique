@@ -5,7 +5,8 @@ import {
   FETCH_HEALTH,
   FETCH_SPORTS,
   FETCH_TECH,
-  SAVE_ARTICLE
+  SAVE_ARTICLE,
+  REMOVE_ARTICLE
 } from "../actions/types";
 
 const initialState = {
@@ -50,6 +51,14 @@ export default function(state = initialState, action) {
         ...state,
         savedArticles: action.payload
       }
+      case REMOVE_ARTICLE:
+        const articleId = action.payload
+        // filter state to remove deleted article
+        const result = state.savedArticles.filter(articles => articles._id !== articleId)
+        return {
+          ...state,
+          savedArticles: result
+        }
     default:
       return state;
   }

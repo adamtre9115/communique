@@ -8,5 +8,8 @@ module.exports = {
     // save user selected articles to db
     saveArticles: function(newArticles, callback){
         newArticles.save(callback)
+    },
+    removeArticle: function(ID, callback){
+        Articles.findOneAndRemove({_id: ID}, callback)
     }
 }

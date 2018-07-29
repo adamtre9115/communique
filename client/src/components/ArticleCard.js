@@ -21,7 +21,8 @@ import { Card, CardImg, CardText, CardBody,
                             data-title={props.articleTitle} 
                             data-image={props.articleImage}
                             data-link={props.articleLink}
-                            onClick={props.articleSave}
+                            data-special={props.articleId}
+                            onClick={props.articleAction}
                         />
                     </Col>
                 </Row>

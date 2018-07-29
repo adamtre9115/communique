@@ -10,7 +10,7 @@ router.post("/save", (req, res) => {
     articleImage: req.body.articleImage,
     articleLink: req.body.articleLink
   });
-  console.log(newArticle)
+
   // save article to db and notify if success or failure
   artController.saveArticles(newArticle, (err, article) => {
     if (err) {
@@ -24,7 +24,7 @@ router.post("/save", (req, res) => {
 // retrieve all articles for user from db
 router.post("/retrieve", (req, res) => {
   const user = req.body.userName;
-  console.log(user)
+
   artController.getArticles(user, (err, articles) => {
     if (err) {
       res.json({ success: false, msg: "Failed to retrieve articles" });
@@ -33,5 +33,19 @@ router.post("/retrieve", (req, res) => {
     }
   });
 });
+
+// remove selected article from the db
+router.post("/remove", (req, res) => {
+  const article = req.body.articleId;
+
+  artController.removeArticle(article, (err, articles) => {
+    if (err) {
+      res.json({ success: false, msg: "Failed to remove article"})
+    } else {
+
+      res.json({ success: true, msg: articles})
+    }
+  })
+})
 
 module.exports = router;

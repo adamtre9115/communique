@@ -77,7 +77,7 @@ class ArticleView extends Component {
               articleTitle={news.title}
               articleDescription={news.description}
               articleLink={news.url}
-              articleSave={this.saveSelected}
+              articleAction={this.saveSelected}
             />
           </Col>
         ))}
