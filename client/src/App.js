@@ -11,6 +11,7 @@ import Saved from "./pages/Saved";
 import ArticleView from "./pages/ArticleView";
 import Navigation from "./components/Navbar";
 import store from "./store";
+import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/articles" component={ArticleView} />
           <SecureRoute path="/saved" component={Saved} />
+          <Footer />
         </div>
       </Provider>
     );

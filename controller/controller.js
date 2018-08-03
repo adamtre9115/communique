@@ -9,6 +9,7 @@ module.exports = {
     saveArticles: function(newArticles, callback){
         newArticles.save(callback)
     },
+    // remove saved articles by ID
     removeArticle: function(ID, callback){
         Articles.findOneAndRemove({_id: ID}, callback)
     }

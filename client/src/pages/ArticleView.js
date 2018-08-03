@@ -54,16 +54,22 @@ class ArticleView extends Component {
   };
 
   saveSelected = (e) => {
-    // capture values of selected article
-    let artToSave = {
-      userName: this.props.user.email,
-      articleTitle: e.target.dataset.title,
-      articleImage: e.target.dataset.image,
-      articleLink: e.target.dataset.link
-    }
-    // send it to the db for saving
-    if (artToSave !== null || artToSave !== undefined){
-      this.props.saveArticle(artToSave)
+    if (this.props.user){
+      // capture values of selected article
+      let artToSave = {
+        userName: this.props.user.email,
+        articleTitle: e.target.dataset.title,
+        articleImage: e.target.dataset.image,
+        articleSource: e.target.dataset.source,
+        articleLink: e.target.dataset.link
+      }
+
+      // send it to the db for saving
+      if (artToSave !== null || artToSave !== undefined){
+        this.props.saveArticle(artToSave)
+      }
+    } else {
+      alert("You must be logged in to complete this action!")
     }
   }
 
@@ -75,7 +81,7 @@ class ArticleView extends Component {
             <ArticleCard
               articleImage={news.urlToImage || Newspaper}
               articleTitle={news.title}
-              articleDescription={news.description}
+              articleSource={news.source.name}
               articleLink={news.url}
               articleAction={this.saveSelected}
             />

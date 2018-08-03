@@ -26,11 +26,6 @@ class Saved extends Component {
     }
   }
 
-  getArticles = email => {
-    this.props.fetchSaved(email)
-    // return console.log(articles)
-  };
-
   removeArticle = e => {
     let id = e.target.dataset.special
     // console.log(id)
@@ -45,6 +40,7 @@ class Saved extends Component {
               articleImage={news.articleImage}
               articleTitle={news.articleTitle}
               articleLink={news.articleLink}
+              articleSource={news.articleSource}
               articleId={news._id}
               articleAction={this.removeArticle}
             />

@@ -8,6 +8,7 @@ router.post("/save", (req, res) => {
     userName: req.body.userName,
     articleTitle: req.body.articleTitle,
     articleImage: req.body.articleImage,
+    articleSource: req.body.articleSource,
     articleLink: req.body.articleLink
   });
 

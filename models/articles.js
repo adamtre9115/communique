@@ -21,6 +21,11 @@ const articleSchema = mongoose.Schema({
         type: String,
         trim: true,
         required: true
+    },
+    articleSource: {
+        type: String,
+        trim: true,
+        required: true
     }
 })
 
