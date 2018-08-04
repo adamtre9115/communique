@@ -71,7 +71,7 @@ class Saved extends Component {
 
     return (
       <Container>
-        <h1>{given_name}'s Shelf</h1>
+        <h1>{given_name} s Shelf</h1>
         <h4>Your shelf is currently empty</h4>
       </Container>
     );
