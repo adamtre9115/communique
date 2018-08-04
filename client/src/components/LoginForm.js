@@ -2,17 +2,83 @@ import React, { Component } from "react";
 import OktaAuth from "@okta/okta-auth-js";
 import { withAuth } from "@okta/okta-react";
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import { loginUser } from "../actions/authActions";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import {
   Alert,
   Button,
   Container,
-  Form,
+  // Form,
   FormGroup,
   Label,
   Input
 } from "reactstrap";
+
+import NewsWallpaper from "../assets/images/newsWallpaper.jpg"
+
+const FormContainer = styled.div`
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+  font-family: 'Roboto', sans-serif;
+  min-height: calc(100vh - 130px);
+  color: #fff;
+  background: url(${NewsWallpaper})
+`
+const Form = styled.form`
+  padding: 20px;
+  margin: 0 auto;
+  width: 60%;
+
+  @media (max-width: 760px) {
+    width: 80%;
+  }
+
+  a {
+    display: inline-block;
+    color: #fff;
+    margin-top: 10px;
+
+    &:hover {
+      color: #ff3366;
+      text-decoration: none;
+    }
+  }
+
+  input {
+    color:#fff;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid #fff;
+
+    &:focus {
+      color: #fff;
+      background: transparent;
+      box-shadow: none;
+      border-bottom: 1px solid #14284a;
+    }
+  
+  }
+
+  input::placeholder {
+    color: #fff;
+  }
+
+  button {
+    width: 100%;
+    background-color: #ff3366;
+    border: none;
+    
+    &:hover {
+      background-color: #14284a;
+      transition: .3s;
+    }
+  }
+
+`;
 
 class LoginForm extends Component {
   constructor(props) {
@@ -73,32 +139,38 @@ class LoginForm extends Component {
     ) : null;
 
     return (
-      <Container>
-        <Form onSubmit={this.handleSubmit}>
-          {errorMessage}
-          <FormGroup>
-            <Label for="userName">User Name</Label>
-            <Input
-              type="text"
-              name="userName"
-              id="userName"
-              value={this.state.username}
-              onChange={this.handleUsernameChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="password">Password</Label>
-            <Input
-              type="password"
-              name="password"
-              id="password"
-              value={this.state.password}
-              onChange={this.handlePasswordChange}
-            />
-          </FormGroup>
-          <Button type="submit">Login</Button>
-        </Form>
-      </Container>
+      <FormContainer>
+        <Container>
+          <Form onSubmit={this.handleSubmit}>
+            <h1 className='text-center'>Welcome Back!</h1>
+            {errorMessage}
+            <FormGroup>
+              {/* <Label for="userName">User Name</Label> */}
+              <Input
+                type="text"
+                name="userName"
+                id="userName"
+                value={this.state.username}
+                onChange={this.handleUsernameChange}
+                placeholder="User Name"
+              />
+            </FormGroup>
+            <FormGroup>
+              {/* <Label for="password">Password</Label> */}
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                value={this.state.password}
+                onChange={this.handlePasswordChange}
+                placeholder="Password"
+              />
+            </FormGroup>
+            <Button type="submit">Login</Button>
+            <p className="text-center"><Link to='/register'>Register for Communique</Link></p>
+          </Form>
+        </Container>
+      </FormContainer>
     );
   }
 }

@@ -6,6 +6,7 @@ import styled from "styled-components";
 const StyledFooter = styled.div`
     color: #fff;
     text-align: center;
+    height: 80px;
     padding: 15px;
     background-color: #A5A5AC;
 `;

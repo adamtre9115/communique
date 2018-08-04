@@ -4,6 +4,7 @@ import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import styled from "styled-components";
 import {
   Card,
+  CardBody,
   CardImg,
   CardTitle,
   CardLink,
@@ -22,8 +23,24 @@ const CardContainer = styled.div`
     margin-bottom: 10px;
     font-family: 'Roboto', sans-serif;
 
+    .card-body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .card-title {
         padding: 10px;
+    }
+
+    .actions, a {
+        color: #000;
+    }
+
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 76%;
+        background-color: rgba(0, 0, 0, 0.5);
     }
     small {
         display: block;
@@ -31,9 +48,14 @@ const CardContainer = styled.div`
     }
 
     img {
-        height: 225px;
+        height: 200px;
+    }
+
+    svg {
+        cursor: pointer;
     }
 `;
+
 const ArticleCard = props => {
   return (
     <CardContainer>
@@ -45,28 +67,31 @@ const ArticleCard = props => {
             src={props.articleImage}
             alt={props.articleName}
         />
+        <div className="overlay"></div>
         <CardImgOverlay>
             <small>Source | {props.articleSource}</small>
             <CardTitle>{props.articleTitle}</CardTitle>
-            <Row>
-            <Col sm="6">
-                <CardLink href={props.articleLink} target="_blank">
-                Read it
-                </CardLink>
-            </Col>
-            <Col sm="6" className="text-right">
-                <FontAwesomeIcon
-                icon={faBookmark}
-                data-title={props.articleTitle}
-                data-image={props.articleImage}
-                data-link={props.articleLink}
-                data-special={props.articleId}
-                data-source={props.articleSource}
-                onClick={props.articleAction}
-                />
-            </Col>
-            </Row>
         </CardImgOverlay>
+            <CardBody>
+                <Row className="actions">
+                    <Col xs="6">
+                        <CardLink href={props.articleLink} target="_blank">
+                        Read it
+                        </CardLink>
+                    </Col>
+                    <Col xs="6" className="text-right">
+                        <FontAwesomeIcon
+                            icon={faBookmark}
+                            data-title={props.articleTitle}
+                            data-image={props.articleImage}
+                            data-link={props.articleLink}
+                            data-special={props.articleId}
+                            data-source={props.articleSource}
+                            onClick={props.articleAction}
+                        />
+                    </Col>
+                </Row>
+            </CardBody>
         </Card>
     </CardContainer>
   );
