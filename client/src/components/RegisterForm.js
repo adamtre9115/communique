@@ -139,7 +139,7 @@ class RegisterForm extends Component {
           <h1 className="text-center">Join Communiqe today</h1>
           <Form onSubmit={this.handleSubmit}>
             {errorMessage}
-            <p>You're on your way but first, we need your...</p>
+            <p>You re on your way but first, we need your...</p>
             <FormGroup>
               {/* <Label for="firstName">First Name</Label> */}
               <Input
