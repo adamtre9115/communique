@@ -59,11 +59,6 @@ export default withAuth(class Navigation extends Component {
               <NavItem>
                 <NavLink tag={Link} to='/saved'>Saved</NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>
