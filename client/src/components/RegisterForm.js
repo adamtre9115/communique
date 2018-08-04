@@ -15,17 +15,17 @@ import {
   Input
 } from "reactstrap";
 
-import config from '../config/appConfig';
-import NewsWallpaper from "../assets/images/newsWallpaper.jpg"
+import config from "../config/appConfig";
+import NewsWallpaper from "../assets/images/newsWallpaper.jpg";
 
 const FormContainer = styled.div`
-  @import url('https://fonts.googleapis.com/css?family=Roboto');
+  @import url("https://fonts.googleapis.com/css?family=Roboto");
 
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   min-height: calc(100vh - 130px);
   color: #fff;
-  background: url(${NewsWallpaper})
-`
+  background: url(${NewsWallpaper});
+`;
 const Form = styled.form`
   padding: 20px;
   margin: 0 auto;
@@ -36,7 +36,7 @@ const Form = styled.form`
   }
 
   input {
-    color:#fff;
+    color: #fff;
     border: 0;
     border-radius: 0;
     outline: 0;
@@ -49,7 +49,6 @@ const Form = styled.form`
       box-shadow: none;
       border-bottom: 1px solid #14284a;
     }
-  
   }
 
   input::placeholder {
@@ -60,14 +59,13 @@ const Form = styled.form`
     width: 100%;
     background-color: #ff3366;
     border: none;
-    
+
     &:hover {
       background-color: #14284a;
-      transition: .3s;
+      transition: 0.3s;
     }
   }
-
-`
+`;
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -80,14 +78,14 @@ class RegisterForm extends Component {
       // sessionToken: null
     };
     this.oktaAuth = new OktaAuth({ url: config.url });
-  
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
-  
+
   handleFirstNameChange(e) {
     this.setState({ firstName: e.target.value });
   }
@@ -138,10 +136,10 @@ class RegisterForm extends Component {
     return (
       <FormContainer>
         <Container>
-            <h1 className="text-center">Join Communiqe today</h1>
+          <h1 className="text-center">Join Communiqe today</h1>
           <Form onSubmit={this.handleSubmit}>
             {errorMessage}
-            <p>You're on your way but first, we need your...</p>
+            <p>You re on your way but first, we need your...</p>
             <FormGroup>
               {/* <Label for="firstName">First Name</Label> */}
               <Input
