@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import OktaAuth from "@okta/okta-auth-js";
 import { withAuth } from "@okta/okta-react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginUser } from "../actions/authActions";
 import styled from "styled-components";
@@ -16,16 +16,16 @@ import {
   Input
 } from "reactstrap";
 
-import NewsWallpaper from "../assets/images/newsWallpaper.jpg"
+import NewsWallpaper from "../assets/images/newsWallpaper.jpg";
 
 const FormContainer = styled.div`
-  @import url('https://fonts.googleapis.com/css?family=Roboto');
+  @import url("https://fonts.googleapis.com/css?family=Roboto");
 
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   min-height: calc(100vh - 130px);
   color: #fff;
-  background: url(${NewsWallpaper})
-`
+  background: url(${NewsWallpaper});
+`;
 const Form = styled.form`
   padding: 20px;
   margin: 0 auto;
@@ -47,7 +47,7 @@ const Form = styled.form`
   }
 
   input {
-    color:#fff;
+    color: #fff;
     border: 0;
     border-radius: 0;
     outline: 0;
@@ -60,7 +60,6 @@ const Form = styled.form`
       box-shadow: none;
       border-bottom: 1px solid #14284a;
     }
-  
   }
 
   input::placeholder {
@@ -71,13 +70,12 @@ const Form = styled.form`
     width: 100%;
     background-color: #ff3366;
     border: none;
-    
+
     &:hover {
       background-color: #14284a;
-      transition: .3s;
+      transition: 0.3s;
     }
   }
-
 `;
 
 class LoginForm extends Component {
@@ -97,20 +95,7 @@ class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // this.oktaAuth
-    //   .signIn({
-    //     username: this.state.username,
-    //     password: this.state.password
-    //   })
-    //   .then(res =>
-    //     this.setState({
-    //       sessionToken: res.sessionToken
-    //     })
-    //   )
-    //   .catch(err => {
-    //     this.setState({ error: err.message });
-    //     console.log(err.statusCode + " error", err);
-    //   });
+
     this.props.loginUser(
       this.oktaAuth,
       this.state.username,
@@ -142,7 +127,7 @@ class LoginForm extends Component {
       <FormContainer>
         <Container>
           <Form onSubmit={this.handleSubmit}>
-            <h1 className='text-center'>Welcome Back!</h1>
+            <h1 className="text-center">Welcome Back!</h1>
             {errorMessage}
             <FormGroup>
               {/* <Label for="userName">User Name</Label> */}
@@ -167,7 +152,9 @@ class LoginForm extends Component {
               />
             </FormGroup>
             <Button type="submit">Login</Button>
-            <p className="text-center"><Link to='/register'>Register for Communique</Link></p>
+            <p className="text-center">
+              <Link to="/register">Register for Communique</Link>
+            </p>
           </Form>
         </Container>
       </FormContainer>
@@ -179,7 +166,7 @@ LoginForm.propTypes = {
   loginUser: PropTypes.func.isRequired,
   sessionToken: PropTypes.string,
   error: PropTypes.string
-}
+};
 
 const mapStateToProps = state => {
   return {

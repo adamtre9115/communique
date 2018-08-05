@@ -94,6 +94,10 @@ const SecondHalf = styled.div`
 `
 
 const FullPage = styled.div`
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+  
+  font-family: "Roboto", sans-serif;
+  
   .row {
     margin-right: 0;
   }

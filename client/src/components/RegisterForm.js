@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import OktaAuth from "@okta/okta-auth-js";
 import { withAuth } from "@okta/okta-react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { registerUser } from "../actions/authActions";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -65,6 +66,17 @@ const Form = styled.form`
       transition: 0.3s;
     }
   }
+
+  a {
+    display: inline-block;
+    color: #fff;
+    margin-top: 10px;
+    
+    &:hover {
+      color: #ff3366;
+      text-decoration: none;
+    }
+  }
 `;
 
 class RegisterForm extends Component {
@@ -75,7 +87,6 @@ class RegisterForm extends Component {
       lastName: "",
       email: "",
       password: ""
-      // sessionToken: null
     };
     this.oktaAuth = new OktaAuth({ url: config.url });
 
@@ -107,17 +118,7 @@ class RegisterForm extends Component {
       lastName: this.state.lastName,
       password: this.state.password
     };
-    //   API.register(userData)
-    //  .then(user => {
-    //     this.oktaAuth.signIn({
-    //       username: this.state.email,
-    //       password: this.state.password
-    //     })
-    //     .then(res => this.setState({
-    //       sessionToken: res.sessionToken
-    //     }));
-    //   })
-    //   .catch(err => console.log);
+   
     this.props.registerUser(this.oktaAuth, userData);
   }
 
@@ -185,6 +186,7 @@ class RegisterForm extends Component {
               />
             </FormGroup>
             <Button type="submit">Join</Button>
+            <p className="text-center"><Link to='/login'>Already registered? Login</Link></p>
           </Form>
         </Container>
       </FormContainer>
