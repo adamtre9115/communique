@@ -28,9 +28,9 @@ const app = express();
 app.use(cors());
 
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("client/build"));
-//   }
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+  }
 
 // client side static folder
 app.use(express.static(path.join(__dirname, "client")));
