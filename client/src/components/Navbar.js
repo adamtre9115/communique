@@ -8,9 +8,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle
+  NavLink
 } from "reactstrap";
 
 export default withAuth(class Navigation extends Component {

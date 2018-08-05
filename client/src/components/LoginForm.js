@@ -4,15 +4,16 @@ import { withAuth } from "@okta/okta-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginUser } from "../actions/authActions";
+import UserModal from "./UserModal";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import {
   Alert,
   Button,
+  Row,
+  Col,
   Container,
-  // Form,
   FormGroup,
-  Label,
   Input
 } from "reactstrap";
 
@@ -130,7 +131,6 @@ class LoginForm extends Component {
             <h1 className="text-center">Welcome Back!</h1>
             {errorMessage}
             <FormGroup>
-              {/* <Label for="userName">User Name</Label> */}
               <Input
                 type="text"
                 name="userName"
@@ -141,7 +141,6 @@ class LoginForm extends Component {
               />
             </FormGroup>
             <FormGroup>
-              {/* <Label for="password">Password</Label> */}
               <Input
                 type="password"
                 name="password"
@@ -152,10 +151,13 @@ class LoginForm extends Component {
               />
             </FormGroup>
             <Button type="submit">Login</Button>
-            <p className="text-center">
-              <Link to="/register">Register for Communique</Link>
-            </p>
+            <Row>
+              <Col xs='12' className='text-center'>
+                <UserModal method='recovery'/> | <Link to="/register">Register for Communique</Link>
+              </Col>
+            </Row>
           </Form>
+          
         </Container>
       </FormContainer>
     );

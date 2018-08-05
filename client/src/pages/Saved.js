@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchUser } from "../actions/authActions";
 import { fetchSaved, removeSaved } from "../actions/articleActions";
 import ArticleCard from "../components/ArticleCard";
+// import UserModal from "../components/UserModal";
 import { Col, Container, Row } from "reactstrap";
 import styled from "styled-components";
 
@@ -64,6 +65,9 @@ class Saved extends Component {
           <SavedContainer>
             <h1>{given_name}'s Shelf</h1>
             {this.renderSaved()}
+            {/* <div>
+              <UserModal userID ={this.props.user.sub}/>
+            </div> */}
           </SavedContainer>
         </Container>
       );
@@ -71,8 +75,13 @@ class Saved extends Component {
 
     return (
       <Container>
-        <h1>{given_name}'s Shelf</h1>
-        <h4>Your shelf is currently empty</h4>
+        <SavedContainer>
+          <h1>{given_name}'s Shelf</h1>
+          <h4>Your shelf is currently empty</h4>
+          {/* <div>
+            <UserModal />
+          </div> */}
+        </SavedContainer>
       </Container>
     );
   }

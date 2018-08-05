@@ -10,9 +10,7 @@ import {
   Alert,
   Button,
   Container,
-  // Form,
   FormGroup,
-  Label,
   Input
 } from "reactstrap";
 
@@ -153,7 +151,6 @@ class RegisterForm extends Component {
               />
             </FormGroup>
             <FormGroup>
-              {/* <Label for="lastName">Last Name</Label> */}
               <Input
                 type="text"
                 name="lastName"
@@ -164,7 +161,6 @@ class RegisterForm extends Component {
               />
             </FormGroup>
             <FormGroup>
-              {/* <Label for="email">Last Name</Label> */}
               <Input
                 type="email"
                 name="email"
@@ -175,7 +171,6 @@ class RegisterForm extends Component {
               />
             </FormGroup>
             <FormGroup>
-              {/* <Label for="password">Password</Label> */}
               <Input
                 type="password"
                 name="password"

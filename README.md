@@ -10,7 +10,9 @@ If a user does not want to create an account, they can still view the news howev
 
 * React.js
 * Redux
+* Styled Components
 * MongoDB
 * Express.js
 * Okta Authentication
+
 
