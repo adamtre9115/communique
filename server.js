@@ -24,16 +24,17 @@ mongoose.connection.on("connected", () => {
 // initialize express
 const app = express();
 
-// allow cross origin access
-app.use(cors());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-  }
+  app.use(express.static("client/build"));
+}
 
 // client side static folder
 app.use(express.static(path.join(__dirname, "client")));
+
+// allow cross origin access
+app.use(cors());
 
 // configure middleware
 app.use(express.json());
